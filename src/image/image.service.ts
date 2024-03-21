@@ -60,6 +60,12 @@ export class ImageService {
 
     // Edit quota for the user
     this.redisService.client.hIncrBy(`${service}:quota`, user, size);
+
+    const url = (process.env.DOMAIN + join(path, fileName)).replaceAll(
+      '\\',
+      '/',
+    );
+    return url;
   }
 
   async deleteFile(service: string, path: string) {
