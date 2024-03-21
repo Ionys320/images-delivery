@@ -17,6 +17,9 @@ import { ConfigModule } from '@nestjs/config';
       port: 3306,
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
+      ssl: {
+        rejectUnauthorized: false,
+      },
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
