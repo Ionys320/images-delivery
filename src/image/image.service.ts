@@ -61,10 +61,9 @@ export class ImageService {
     // Edit quota for the user
     this.redisService.client.hIncrBy(`${service}:quota`, user, size);
 
-    const url = (process.env.DOMAIN + join('/', path, fileName)).replaceAll(
-      '\\',
-      '/',
-    );
+    const url = (
+      process.env.DOMAIN + join('/', service, path, fileName)
+    ).replaceAll('\\', '/');
     return url;
   }
 
