@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { join } from 'path';
-import { mkdirSync, rmSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import { randomUUID } from 'crypto';
 import { RedisService } from 'src/redis/redis.service';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -71,7 +71,7 @@ export class ImageService {
     const filePath = this.buildPath(service, path);
 
     // Remove the image from the file system
-    rmSync(filePath);
+    if (existsSync(filePath)) rmSync(filePath);
 
     // Get the file from the database
     const file = await this.fileRepository.findOne({
