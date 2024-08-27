@@ -53,7 +53,7 @@ export class ImageService {
     // Save the image in the database
     await this.fileRepository.save({
       service,
-      path: path + fileName,
+      path: join(path, fileName),
       size: size,
       user,
     });
